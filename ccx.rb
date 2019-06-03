@@ -31,7 +31,7 @@ class Ccx < Formula
   
   # Add <pthread.h> to Calculix.h
   # u_free must return a void pointer
-  patch :DATA
+  #patch :DATA
 
   def install
     (buildpath/"spooles").install resource("spooles")
@@ -51,7 +51,7 @@ class Ccx < Formula
     fflags= %w[-O2]
     fflags << "-fopenmp" if build.with? "openmp"
     cflags = %w[-O2 -I../../spooles -DARCH=Linux -DSPOOLES -DARPACK -DMATRIXSTORAGE]
-    cflags << "-DUSE_MT=1" if build.with? "openmp"
+    #cflags << "-DUSE_MT=1" if build.with? "openmp"
     libs = ["$(DIR)/spooles.a", "$(shell pkg-config --libs arpack)"]
     # ARPACK uses Accelerate on macOS and OpenBLAS on Linux
     libs << "-framework accelerate" if OS.mac?
@@ -93,39 +93,3 @@ index 9cab2fc..d1e4827 100755
  	./date.pl; $(CC) $(CFLAGS) -c ccx_2.15.c; $(FC)  -Wall -O3 -o $@ $(OCCXMAIN) ccx_2.15.a $(LIBS)
  
  ccx_2.15.a: $(OCCXF) $(OCCXC)
-
-#diff --git a/ccx_2.15/src/CalculiX.h b/ccx_2.15/src/CalculiX.h
-#index ee81ca8..d957130 100644
-#--- a/ccx_2.15/src/CalculiX.h
-#+++ b/ccx_2.15/src/CalculiX.h
-#@@ -15,6 +15,7 @@
- #/*     along with this program; if not, write to the Free Software       */
- #/*     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.         */
-#+#include <pthread.h>
- ##define Linux 1
- ##define IRIX 2
- ##define IRIX64 3
-#diff --git a/ccx_2.15/src/Makefile b/ccx_2.15/src/Makefile
-#index 9335028..d7791f1 100755
-#--- a/ccx_2.15/src/Makefile
-#+++ b/ccx_2.15/src/Makefile
-#@@ -25,7 +25,7 @@ LIBS = \
-	#../../../ARPACK/libarpack_INTEL.a \
-        #-lpthread -lm -lc
-
-#-ccx_2.15: $(OCCXMAIN) ccx_2.15.a  $(LIBS)
-#+ccx_2.15: $(OCCXMAIN) ccx_2.15.a
-	#./date.pl; $(CC) $(CFLAGS) -c ccx_2.15.c; $(FC) -fopenmp -Wall -O3 -o $@ $(OCCXMAIN) ccx_2.15.a $(LIBS)
-
- #ccx_2.15.a: $(OCCXF) $(OCCXC)
-#diff --git a/ccx_2.15/src/u_free.c b/ccx_2.15/src/u_free.c
-#index acccf3b..da517de 100644
-#--- a/ccx_2.15/src/u_free.c
-#+++ b/ccx_2.15/src/u_free.c
-#@@ -41,5 +41,5 @@ void *u_free(void* ptr,const char *file,const int line, const char* ptr_name){
-   #if(log_realloc==1) {
-       #printf("FREEING of variable %s, file %s, line=%d: oldaddress= %ld\n",ptr_name,file,line,(long int)ptr);
-   #}      
-#-  return;
-#+  return NULL;
- #}
