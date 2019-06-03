@@ -5,6 +5,6 @@ This formula provides convenient installation of Calculix FEA software.
 
 # How do I install this formula?
 
-brew install phyzzld/homebrew-ccx/calculix-ccx
+brew install phyzzld/ccx/ccx
 
-Or brew tap phyzzld/ccx and then brew install calculix-ccx.
+Or brew tap phyzzld/ccx and then brew install ccx.
