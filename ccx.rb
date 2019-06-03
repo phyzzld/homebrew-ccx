@@ -80,17 +80,17 @@ class Ccx < Formula
 end
 
 __END__
-diff --git a/ccx_2.15/src/CalculiX.h b/ccx_2.15/src/CalculiX.h
-index ee81ca8..d957130 100644
---- a/ccx_2.15/src/CalculiX.h
-+++ b/ccx_2.15/src/CalculiX.h
-@@ -15,6 +15,7 @@
- /*     along with this program; if not, write to the Free Software       */
- /*     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.         */
-+#include <pthread.h>
- #define Linux 1
- #define IRIX 2
- #define IRIX64 3
+#diff --git a/ccx_2.15/src/CalculiX.h b/ccx_2.15/src/CalculiX.h
+#index ee81ca8..d957130 100644
+#--- a/ccx_2.15/src/CalculiX.h
+#+++ b/ccx_2.15/src/CalculiX.h
+#@@ -15,6 +15,7 @@
+ #/*     along with this program; if not, write to the Free Software       */
+ #/*     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.         */
+#+#include <pthread.h>
+ ##define Linux 1
+ ##define IRIX 2
+ ##define IRIX64 3
 diff --git a/ccx_2.15/src/Makefile b/ccx_2.15/src/Makefile
 index 9335028..d7791f1 100755
 --- a/ccx_2.15/src/Makefile
