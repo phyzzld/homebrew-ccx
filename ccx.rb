@@ -80,6 +80,20 @@ class Ccx < Formula
 end
 
 __END__
+diff --git a/ccx_2.15/src/Makefile b/ccx_2.15/src/Makefile
+index 9cab2fc..d1e4827 100755
+--- a/ccx_2.15/src/Makefile
++++ b/ccx_2.15/src/Makefile
+@@ -25,7 +25,7 @@ LIBS = \
+ 	../../../ARPACK/libarpack_INTEL.a \
+        -lpthread -lm -lc
+ 
+-ccx_2.15: $(OCCXMAIN) ccx_2.15.a  $(LIBS)
++ccx_2.15: $(OCCXMAIN) ccx_2.15.a
+ 	./date.pl; $(CC) $(CFLAGS) -c ccx_2.15.c; $(FC)  -Wall -O3 -o $@ $(OCCXMAIN) ccx_2.15.a $(LIBS)
+ 
+ ccx_2.15.a: $(OCCXF) $(OCCXC)
+
 #diff --git a/ccx_2.15/src/CalculiX.h b/ccx_2.15/src/CalculiX.h
 #index ee81ca8..d957130 100644
 #--- a/ccx_2.15/src/CalculiX.h
