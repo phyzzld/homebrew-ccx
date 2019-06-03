@@ -29,9 +29,7 @@ class Ccx < Formula
     sha256 "a84559a0e987a1e423055ef4fdf3035d55b65bbe4bf915efaa1a35bef7f8c5dd"
   end
   
-  # Add <pthread.h> to Calculix.h
-  # u_free must return a void pointer
-  #patch :DATA
+  patch :DATA
 
   def install
     (buildpath/"spooles").install resource("spooles")
@@ -55,7 +53,7 @@ class Ccx < Formula
     libs = ["$(DIR)/spooles.a", "$(shell pkg-config --libs arpack)"]
     # ARPACK uses Accelerate on macOS and OpenBLAS on Linux
     libs << "-framework accelerate" if OS.mac?
-    libs << "-lopenblas -pthread" if OS.linux? # OpenBLAS uses pthreads
+    #libs << "-lopenblas -pthread" if OS.linux? # OpenBLAS uses pthreads
     args = ["CC=#{ENV.cc}",
             "FC=#{ENV.fc}",
             "CFLAGS=#{cflags.join(" ")}",
