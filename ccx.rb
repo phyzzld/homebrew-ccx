@@ -5,8 +5,8 @@ class Ccx < Formula
   url "http://www.dhondt.de/ccx_2.15.src.tar.bz2"
   sha256 "bc7dba721935af51b60c1b5aa1529a420476fc6432a7bec5254f8dfabaeb8a34"
 
-  option "with-openmp", "build with OpenMP support"
-  needs :openmp if build.with? "openmp"
+  #option "with-openmp", "build with OpenMP support"
+  #needs :openmp if build.with? "openmp"
 
   depends_on "gcc" if OS.mac? # for gfortran
   depends_on "arpack"
@@ -31,7 +31,7 @@ class Ccx < Formula
   
   # Add <pthread.h> to Calculix.h
   # u_free must return a void pointer
-  #patch :DATA
+  patch :DATA
 
   def install
     (buildpath/"spooles").install resource("spooles")
@@ -39,7 +39,7 @@ class Ccx < Formula
     # Patch spooles library
     inreplace "spooles/Make.inc", "/usr/lang-4.0/bin/cc", ENV.cc
     inreplace "spooles/Tree/src/makeGlobalLib", "drawTree.c", "tree.c"
-    inreplace "ccx_2.15/src/Makefile", "-fopenmp", "" if build.without? "openmp"
+    #inreplace "ccx_2.15/src/Makefile", "-fopenmp", "" if build.without? "openmp"
 
     # Build serial spooles library
     system "make", "-C", "spooles", "lib"
