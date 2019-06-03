@@ -91,27 +91,27 @@ __END__
  ##define Linux 1
  ##define IRIX 2
  ##define IRIX64 3
-diff --git a/ccx_2.15/src/Makefile b/ccx_2.15/src/Makefile
-index 9335028..d7791f1 100755
---- a/ccx_2.15/src/Makefile
-+++ b/ccx_2.15/src/Makefile
-@@ -25,7 +25,7 @@ LIBS = \
-	../../../ARPACK/libarpack_INTEL.a \
-        -lpthread -lm -lc
+#diff --git a/ccx_2.15/src/Makefile b/ccx_2.15/src/Makefile
+#index 9335028..d7791f1 100755
+#--- a/ccx_2.15/src/Makefile
+#+++ b/ccx_2.15/src/Makefile
+#@@ -25,7 +25,7 @@ LIBS = \
+	#../../../ARPACK/libarpack_INTEL.a \
+        #-lpthread -lm -lc
 
--ccx_2.15: $(OCCXMAIN) ccx_2.15.a  $(LIBS)
-+ccx_2.15: $(OCCXMAIN) ccx_2.15.a
-	./date.pl; $(CC) $(CFLAGS) -c ccx_2.15.c; $(FC) -fopenmp -Wall -O3 -o $@ $(OCCXMAIN) ccx_2.15.a $(LIBS)
+#-ccx_2.15: $(OCCXMAIN) ccx_2.15.a  $(LIBS)
+#+ccx_2.15: $(OCCXMAIN) ccx_2.15.a
+	#./date.pl; $(CC) $(CFLAGS) -c ccx_2.15.c; $(FC) -fopenmp -Wall -O3 -o $@ $(OCCXMAIN) ccx_2.15.a $(LIBS)
 
- ccx_2.15.a: $(OCCXF) $(OCCXC)
-diff --git a/ccx_2.15/src/u_free.c b/ccx_2.15/src/u_free.c
-index acccf3b..da517de 100644
---- a/ccx_2.15/src/u_free.c
-+++ b/ccx_2.15/src/u_free.c
-@@ -41,5 +41,5 @@ void *u_free(void* ptr,const char *file,const int line, const char* ptr_name){
-   if(log_realloc==1) {
-       printf("FREEING of variable %s, file %s, line=%d: oldaddress= %ld\n",ptr_name,file,line,(long int)ptr);
-   }      
--  return;
-+  return NULL;
- }
+ #ccx_2.15.a: $(OCCXF) $(OCCXC)
+#diff --git a/ccx_2.15/src/u_free.c b/ccx_2.15/src/u_free.c
+#index acccf3b..da517de 100644
+#--- a/ccx_2.15/src/u_free.c
+#+++ b/ccx_2.15/src/u_free.c
+#@@ -41,5 +41,5 @@ void *u_free(void* ptr,const char *file,const int line, const char* ptr_name){
+   #if(log_realloc==1) {
+       #printf("FREEING of variable %s, file %s, line=%d: oldaddress= %ld\n",ptr_name,file,line,(long int)ptr);
+   #}      
+#-  return;
+#+  return NULL;
+ #}
