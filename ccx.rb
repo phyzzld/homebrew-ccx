@@ -31,7 +31,7 @@ class Ccx < Formula
   
   # Add <pthread.h> to Calculix.h
   # u_free must return a void pointer
-  patch :DATA
+  #patch :DATA
 
   def install
     (buildpath/"spooles").install resource("spooles")
